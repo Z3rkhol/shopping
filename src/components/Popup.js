@@ -10,18 +10,23 @@ const Popup = ({ listData, onClose }) => {
         <div className="popup-overlay">
             <div className="popup-content">
                 <h2>{listData.title}</h2>
-                <ul className="list-group">
+                <div className="items-container">
                     {listData.items.map(item => (
-                        <li key={item.id} className="list-group-item d-flex justify-content-between align-items-center">
-                            {item.name}
-                            <span>{`${item.quantity} ${item.unit}`}</span>
-                        </li>
+                        <div key={item.id} className="item-entry d-flex justify-content-between">
+                            <div className="item-box">{item.name}</div>
+                            <div className="quantity-box">{`${item.quantity} ${item.unit}`}</div>
+                            <div className="buttons-box">
+                                <button className="btn btn-success btn-sm">Hotovo</button>
+                                <button className="btn btn-danger btn-sm">Odebrat</button>
+                            </div>
+                        </div>
                     ))}
-                </ul>
-                <button onClick={onClose} className="btn btn-secondary">Close</button>
+                </div>
+                <button onClick={onClose} className="close-btn">&times;</button>
             </div>
         </div>
     );
 };
+
 
 export default Popup;

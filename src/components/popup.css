@@ -16,4 +16,55 @@
     padding: 20px;
     border-radius: 5px;
     z-index: 1001;
+    position: relative; /* For absolute positioning of the close button */
+}
+
+.close-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    border: none;
+    background: none;
+    font-size: 24px;
+    color: grey;
+    cursor: pointer;
+}
+
+.items-container {
+    margin-bottom: 1rem;
+}
+
+.item-entry {
+    margin-bottom: 0.5rem; /* Space between items */
+    align-items: center; /* Align the height of children */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.item-box, .quantity-box {
+    border: 1px solid #000; /* Black border */
+    padding: 0.5rem;
+    text-align: center; /* Center the text horizontally */
+    border-radius: 4px; /* Rounded corners for aesthetics */
+}
+
+.item-box {
+    min-width: 120px; /* Adjust width as needed */
+}
+
+.quantity-box {
+    min-width: 80px; /* Adjust width as needed */
+}
+
+.buttons-box {
+    display: flex;
+    gap: 10px;
+}
+
+/* Style the buttons */
+.btn-sm {
+    padding: 0.25rem 0.5rem; /* Smaller padding for small buttons */
+    line-height: 1; /* Standard line height */
+    border-radius: 0.2rem; /* Slightly rounded corners for buttons */
 }
