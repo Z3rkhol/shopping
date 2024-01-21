@@ -1,7 +1,10 @@
 import React from "react";
 import Popup from './Popup';
+import { useTranslation } from 'react-i18next';
 
 function ListCard({ list, updateListItems }){
+    const { t } = useTranslation();
+
     const [showPopup, setShowPopup] = React.useState(false);
 
     const handleShow = () => {
@@ -20,8 +23,8 @@ function ListCard({ list, updateListItems }){
                     <div className="card-body d-flex flex-column justify-content-between align-items-center">
                         <h5 className="card-title">{list.title}</h5>
                         <div className="button-group d-flex flex-column mb-2">
-                            <button onClick={handleShow} className="btn btn-primary mb-2">SHOW</button>
-                            <button onClick={handleDelete} className="btn btn-danger">DELETE</button>
+                            <button onClick={handleShow} className="btn btn-primary mb-2">{t('listCard.show')}</button>
+                            <button onClick={handleDelete} className="btn btn-danger">{t('listCard.delete')}</button>
                         </div>
                     </div>
                 </div>

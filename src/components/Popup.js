@@ -2,27 +2,32 @@ import React, { useState, useEffect } from 'react';
 import './popup.css';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { useTheme } from './Theme';
+import { useTranslation } from 'react-i18next';
 
 const MySwal = withReactContent(Swal);
 
 var finished = false;
 
 function Popup({ listData, onClose, updateListItems }) {
+    const { t } = useTranslation();
+
     const [items, setItems] = useState(listData.items || []);
+    const { theme } = useTheme();
 
     const handleAddItem = () => {
         Swal.fire({
-            title: 'Zadejte detaily předmětu',
+            title: t('popup.enterItemDetails'),
             html: `
-            <input id="swal-input-name" class="swal2-input" placeholder="Název">
-            <input id="swal-input-quantity" type="number" class="swal2-input" placeholder="Počet">`,
+            <input id="swal-input-name" class="swal2-input" placeholder="${t('popup.itemName')}">
+            <input id="swal-input-quantity" type="number" class="swal2-input" placeholder="${t('popup.quantity')}">`,
             showCancelButton: true,
-            confirmButtonText: 'Přidat',
+            confirmButtonText: t('popup.confirmAdd'),
             preConfirm: () => {
                 const name = document.getElementById('swal-input-name').value;
                 const quantity = document.getElementById('swal-input-quantity').value;
                 if (!name || !quantity) {
-                    Swal.showValidationMessage('Zadejte prosím vše!');
+                    Swal.showValidationMessage(t('popup.enterAll'));
                     return false;
                 }
                 return { name, quantity: parseInt(quantity, 10) };
@@ -55,12 +60,12 @@ function Popup({ listData, onClose, updateListItems }) {
 
     const handleDelete = (itemId) => {
         Swal.fire({
-            title: 'Jste si jitsti že tento předmět chcete odstranit?',
+            title: t('popup.confirmDeletion'),
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Ano!'
+            confirmButtonText: t('popup.yesDelete')
         }).then((result) => {
             if (result.isConfirmed) {
                 const updatedItems = items.filter(item => item.id !== itemId);
@@ -69,8 +74,8 @@ function Popup({ listData, onClose, updateListItems }) {
                     updateListItems(listData.id, updatedItems); // Update items in the parent component
                 }
                 Swal.fire(
-                    'Odstraněno!',
-                    'Předmět odstraněn.',
+                    t('popup.deleted'),
+                    t('popup.itemDeleted'),
                     'success'
                 );
             }
@@ -81,18 +86,18 @@ function Popup({ listData, onClose, updateListItems }) {
 
     const handleClear = () => {
         Swal.fire({
-            title: 'Jste si jisti že chcete promazat seznam?',
+            title: t('popup.confirmClear'),
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Ano!'
+            confirmButtonText: t('popup.yesDelete')
         }).then((result) => {
             if (result.isConfirmed) {
                 setItems([]);
                 Swal.fire({
-                    title: 'Smazáno!',
-                    text: 'Seznam promazán.',
+                    title: t('popup.cleared'),
+                    text: t('popup.listCleared'),
                     icon: 'success',
                 });
             }
@@ -109,7 +114,7 @@ function Popup({ listData, onClose, updateListItems }) {
         setItems(updatedItems);
 
         Swal.fire({
-            title: updatedItems.find(item => item.id === itemId).finished ? 'Item marked as completed!' : 'Item marked as incomplete!',
+            title: updatedItems.find(item => item.id === itemId).finished ? t('popup.itemCompleted') : t('popup.itemIncomplete'),
             icon: updatedItems.find(item => item.id === itemId).finished ? 'success' : 'error',
             toast: true,
             position: 'top-end',
@@ -142,19 +147,19 @@ function Popup({ listData, onClose, updateListItems }) {
 
     const handleManageUsers = () => {
         MySwal.fire({
-            title: 'Správa Uživatelů',
-            html: (
+            title: t('popup.manageUsers'),
+            html: `
                 <div>
-                    <input id="swal-input1" className="swal2-input" placeholder="Username" />
-                    <ul className="list-group mt-2">
-                        <li className="list-group-item">Kuba</li>
-                        <li className="list-group-item">Honza</li>
+                    <input id="swal-input1" class="swal2-input" placeholder="${t('popup.username')}"/>
+                    <ul class="list-group mt-2">
+                        <li class="list-group-item">Kuba</li>
+                        <li class="list-group-item">Honza</li>
                     </ul>
                 </div>
-            ),
+            `,
             showCancelButton: true,
-            confirmButtonText: 'Přidat',
-            cancelButtonText: 'Zrušit',
+            confirmButtonText: t('popup.addUser'),
+            cancelButtonText: t('popup.cancel'),
             didOpen: () => {
                 // This function runs when the alert is displayed
                 document.getElementById('swal-input1').focus();
@@ -182,7 +187,7 @@ function Popup({ listData, onClose, updateListItems }) {
 
     const handleArchive = () => {
         Swal.fire({
-            title: 'Archivováno!',
+            title: t('popup.archived'),
             icon: 'info',
             confirmButtonText: 'X',
             showConfirmButton: false,
@@ -211,21 +216,21 @@ function Popup({ listData, onClose, updateListItems }) {
     );
 
     return (
-        <div className="popup-overlay">
-            <div className="popup-content">
+        <div className={`popup-overlay ${theme}`}>
+            <div className={`popup-content ${theme}`}>
                 <h2>{listData.title}</h2>
                 <div className="items-container">
                     {items.map(renderItemEntry)}
                 </div>
                 <button onClick={onClose} className="close-btn">&times;</button>
                 <div className="text-center mt-3">
-                    <button onClick={handleAddItem} className="btn btn-primary">Přidat</button>
+                    <button onClick={handleAddItem} className="btn btn-primary">{t('popup.addItem')}</button>
                 </div>
                 <div className="popup-buttons text-center mt-3">
-                    <button onClick={handleManageUsers} className="btn btn-info m-2">Přidat uživatele</button>
-                    <button onClick={handleFinished} className="btn btn-warning m-2">Označit jako hotové</button>
-                    <button onClick={handleArchive} className="btn btn-secondary m-2">Archivovat</button>
-                    <button onClick={handleClear} className="btn btn-danger m-2">Smazat položky</button>
+                    <button onClick={handleManageUsers} className="btn btn-info m-2">{t('popup.manageUsers')}</button>
+                    <button onClick={handleFinished} className="btn btn-warning m-2">{t('popup.itemFinishedMark')}</button>
+                    <button onClick={handleArchive} className="btn btn-secondary m-2">{t('popup.archive')}</button>
+                    <button onClick={handleClear} className="btn btn-danger m-2">{t('popup.deleteItems')}</button>
                 </div>
             </div>
         </div>

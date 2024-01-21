@@ -1,0 +1,44 @@
+{
+  "home": {
+    "title": "Shopping Lists"
+  },
+  "listCard": {
+    "show": "Show",
+    "delete": "Delete"
+  },
+  "popup": {
+    "confirmAdd": "Add",
+    "addItem": "Add Item",
+    "manageUsers": "Manage Users",
+    "markAsDone": "Mark as Done",
+    "archive": "Archive",
+    "deleteItems": "Delete Items",
+    "close": "Close",
+    "itemFinishedMark": "Done",
+    "enterItemDetails": "Enter item details",
+    "itemName": "Item name",
+    "quantity": "Quantity",
+    "enterAll": "Please enter all details!",
+    "confirmDeletion": "Are you sure you want to delete this item?",
+    "yesDelete": "Yes, delete it!",
+    "deleted": "Deleted!",
+    "itemDeleted": "The item has been deleted.",
+    "confirmClear": "Are you sure you want to clear the list?",
+    "yesClear": "Yes, clear it!",
+    "cleared": "Cleared!",
+    "listCleared": "The list has been cleared.",
+    "itemCompleted": "Item marked as completed!",
+    "itemIncomplete": "Item marked as incomplete!",
+    "username": "Username",
+    "addUser": "Add User",
+    "cancel": "Cancel",
+    "userAdded": "User added!",
+    "archived": "Archived!"
+  },
+  "shoppingLists": {
+    "1": "Groceries",
+    "2": "PC Parts",
+    "3": "Car Stuff",
+    "4": "Grandma's Shopping"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "home": {
+    "title": "Nákupní Seznamy"
+  },
+  "listCard": {
+    "show": "Zobrazit",
+    "delete": "Odstranit"
+  },
+  "popup": {
+    "confirmAdd": "Přidat",
+    "addItem": "Přidat Položku",
+    "manageUsers": "Správa Uživatelů",
+    "markAsDone": "Označit Jako Hotové",
+    "archive": "Archivovat",
+    "deleteItems": "Smazat Položky",
+    "close": "Zavřít",
+    "itemFinishedMark": "Hotovo",
+    "enterItemDetails": "Zadejte detaily předmětu",
+    "itemName": "Název",
+    "quantity": "Počet",
+    "enterAll": "Zadejte prosím vše!",
+    "confirmDeletion": "Jste si jitsti že tento předmět chcete odstranit?",
+    "yesDelete": "Ano!",
+    "deleted": "Odstraněno!",
+    "itemDeleted": "Předmět odstraněn.",
+    "confirmClear": "Jste si jisti že chcete promazat seznam?",
+    "yesClear": "Ano!",
+    "cleared": "Smazáno!",
+    "listCleared": "Seznam promazán.",
+    "itemCompleted": "Položka označena jako hotová!",
+    "itemIncomplete": "Položka označena jako nesplněná!",
+    "username": "Uživatelské jméno",
+    "addUser": "Přidat",
+    "cancel": "Zrušit",
+    "userAdded": "Uživatel přidán!",
+    "archived": "Archivováno!",
+    "addName": "Prosím zadejte username"
+  },
+  "shoppingLists": {
+    "1": "Nákup",
+    "2": "PC Komponenty",
+    "3": "Věci pro auto",
+    "4": "Babičky nákup"
+  }
+}
